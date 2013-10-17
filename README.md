@@ -25,6 +25,16 @@ puts Gravatar.tag('you@you.com', 32)
 puts Gravatar.tag('you@you.com', 32, 'http://you.com/image.png', 'The image alt text')
 ```
 
+# Parameters
+
+```ruby
+Gravatar.src(email_address, size, default_image)
+```
+
+```ruby
+Gravatar.tag(email_address, size, default_image, alt_text)
+```
+
 ## License
 
 rb-gravatar is available under the MIT license. See the LICENSE file for more info.
