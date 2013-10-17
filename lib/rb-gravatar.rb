@@ -1,9 +1,7 @@
 require 'digest/md5'
-require 'erb'
+require 'cgi'
 
 class Gravatar
-  include ERB::Util
-  
   def self.construct_resource(email_address, size, default)
     if size < 1 || size > 2048
       size = 64
@@ -14,7 +12,7 @@ class Gravatar
     parts << "?s=#{size}"
     
     if !default.nil?
-      parts << "&d=#{url_encode(default)}"
+      parts << "&d=#{CGI.escape(default)}"
     end
     
     parts.join        
