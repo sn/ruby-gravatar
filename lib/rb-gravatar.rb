@@ -20,21 +20,10 @@ class Gravatar
     parts.join        
   end
   
-  # Generate the Gravatar src attribute value from an email address
-  #
-  # @param string email_address
-  # @param string size = 64
-  # @param string default = nil  
   def self.src(email_address, size = 64, default = nil)
     Gravatar.construct_resource(email_address, size, default)
   end
-  
-  # Generate the Gravatar image from an email address
-  #
-  # @param string email_address
-  # @param string size = 64
-  # @param string alt_text = nil  
-  # @param string default = nil    
+
   def self.tag(email_address, size = 64, default = nil, alt_text = nil)    
     return "<img src='#{Gravatar.construct_resource(email_address, size, default)}' />" if alt_text.nil?
     return "<img src='#{Gravatar.construct_resource(email_address, size, default)}' alt='#{alt_text}' />" if !alt_text.nil?
