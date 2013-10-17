@@ -1,7 +1,7 @@
 rb-gravatar
 =============
 
-A simple and up to day Ruby Gem for generating Gravatar images and tags. 
+A simple and up to date Ruby Gem for generating Gravatar images and tags. 
 
 ## Installation
 
