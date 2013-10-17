@@ -18,11 +18,14 @@ require 'rb-gravatar'
 puts Gravatar.src('you@you.com')
 puts Gravatar.src('you@you.com', 32)
 puts Gravatar.src('you@you.com', 32, 'http://you.com/image.png')
+# Result: http://www.gravatar.com/avatar/d7f390bdf9f44bd8f460ac1aff05a603?s=32&d=http%3A%2F%2Fyou.com%2Fimage.png
 
 # Generate the whole image tag
 puts Gravatar.tag('you@you.com')
 puts Gravatar.tag('you@you.com', 32)
 puts Gravatar.tag('you@you.com', 32, 'http://you.com/image.png', 'The image alt text')
+# Result: <img src='http://www.gravatar.com/avatar/d7f390bdf9f44bd8f460ac1aff05a603?s=32&d=http%3A%2F%2Fyou.com%2Fimage.png' />
+
 ```
 
 # Parameters
