@@ -9,7 +9,7 @@ class Gravatar
     end
     
     parts = []
-    parts << "http://www.gravatar.com/avatar/"
+    parts << "//www.gravatar.com/avatar/"
     parts << "#{Digest::MD5.hexdigest(email_address.downcase.strip)}"
     parts << "?s=#{size}"
     
@@ -38,4 +38,9 @@ class Gravatar
       nil
     end
   end  
+  
+  # Output the DNS preload tags
+  def self.prefetch_dns()
+    '<link rel="dns-prefetch" href="//gravatar.com">'
+  end
 end
