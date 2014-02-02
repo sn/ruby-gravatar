@@ -38,6 +38,15 @@ Gravatar.src(email_address, size, default_image)
 Gravatar.tag(email_address, size, default_image, alt_text)
 ```
 
+# DNS Prefetch
+
+You can also automatically add the DNS prefetch tag to your page headers using:
+
+```
+<%= Gravatar.prefetch_dns() %>
+```
+
+
 ## License
 
 rb-gravatar is available under the MIT license. See the LICENSE file for more info.

@@ -32,8 +32,7 @@ class Gravatar
   # Generate and return the full img tag for the Gravatar URI
   def self.tag(email_address, size = 64, default = nil, alt_text = nil)    
     begin
-      return "<img src='#{Gravatar.construct_resource(email_address, size, default)}' class='gravatar' />" if alt_text.nil?
-      return "<img src='#{Gravatar.construct_resource(email_address, size, default)}' class='gravatar' alt='#{alt_text}' />" if !alt_text.nil?      
+      return "<img src='#{Gravatar.construct_resource(email_address, size, default)}' class='gravatar' alt='#{alt_text}' />"
     rescue Exception => e
       nil
     end
