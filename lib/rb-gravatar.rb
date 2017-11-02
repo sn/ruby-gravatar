@@ -10,11 +10,13 @@ class Gravatar
     
     parts = []
     parts << "//www.gravatar.com/avatar/"
-    parts << "#{Digest::MD5.hexdigest(email_address.downcase.strip)}"
-    parts << "?s=#{size}"
+    parts << Digest::MD5.hexdigest(email_address.downcase.strip)
+    parts << "?s="
+    parts << size
     
     if !default.nil?
-      parts << "&d=#{CGI.escape(default)}"
+      parts << "&d="
+      parts << CGI.escape(default)
     end
     
     parts.join        
