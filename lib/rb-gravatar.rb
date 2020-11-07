@@ -19,7 +19,7 @@ class Gravatar
       parts << CGI.escape(default)
     end
     
-    parts.join        
+    parts.join
   end
   
   # Generate and return only the Gravatar URI
@@ -33,15 +33,11 @@ class Gravatar
 
   # Generate and return the full img tag for the Gravatar URI
   def self.tag(email_address, size = 64, default = nil, alt_text = nil)    
-    begin
-      return "<img src='#{Gravatar.construct_resource(email_address, size, default)}' class='gravatar' alt='#{alt_text}' />"
-    rescue Exception => e
-      nil
-    end
+    return "<img src='#{Gravatar.construct_resource(email_address, size, default)}' class='gravatar' alt='#{alt_text}' />"
   end  
   
   # Output the DNS preload tags
-  def self.prefetch_dns()
+  def self.prefetch_dns
     '<link rel="dns-prefetch" href="//gravatar.com">'
   end
 end
