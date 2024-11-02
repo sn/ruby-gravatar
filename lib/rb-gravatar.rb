@@ -1,41 +1,40 @@
 require 'digest/md5'
 require 'cgi'
+require 'uri'
 
 class Gravatar
-  # Construct the Gravatar URI generically
+  # Construct the Gravatar URI generically with improved validation and HTTPS support
   def self.construct_resource(email_address, size, default)
-    if size < 1 || size > 2048
-      size = 64
+    # Validate email format
+    unless email_address =~ URI::MailTo::EMAIL_REGEXP
+      raise ArgumentError, "Invalid email format"
     end
-    
-    parts = []
-    parts << "//www.gravatar.com/avatar/"
-    parts << Digest::MD5.hexdigest(email_address.downcase.strip)
-    parts << "?s="
-    parts << size
-    
-    if !default.nil?
-      parts << "&d="
-      parts << CGI.escape(default)
-    end
-    
-    parts.join
+
+    # Size validation
+    size = (1..2048).cover?(size) ? size : 64
+
+    # Build URL
+    gravatar_url = "https://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email_address.downcase.strip)}?s=#{size}"
+    gravatar_url += "&d=#{CGI.escape(default)}" if default
+    gravatar_url
   end
-  
+
   # Generate and return only the Gravatar URI
   def self.src(email_address, size = 64, default = nil)
-    begin
-      Gravatar.construct_resource(email_address, size, default)
-    rescue Exception => e
-      nil
-    end
+    construct_resource(email_address, size, default)
+  rescue ArgumentError => e
+    puts "Error: #{e.message}"
+    nil
   end
 
   # Generate and return the full img tag for the Gravatar URI
-  def self.tag(email_address, size = 64, default = nil, alt_text = nil)    
-    return "<img src='#{Gravatar.construct_resource(email_address, size, default)}' class='gravatar' alt='#{alt_text}' />"
-  end  
-  
+  def self.tag(email_address, size = 64, default = nil, alt_text = "Gravatar")
+    "<img src='#{construct_resource(email_address, size, default)}' class='gravatar' alt='#{CGI.escapeHTML(alt_text)}' />"
+  rescue ArgumentError => e
+    puts "Error: #{e.message}"
+    nil
+  end
+
   # Output the DNS preload tags
   def self.prefetch_dns
     '<link rel="dns-prefetch" href="//gravatar.com">'
