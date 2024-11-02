@@ -1,0 +1,23 @@
+PATH
+  remote: .
+  specs:
+    rb-gravatar (1.0.7)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (5.25.1)
+    rake (13.2.1)
+
+PLATFORMS
+  arm64-darwin-24
+  ruby
+
+DEPENDENCIES
+  bundler (~> 2.3)
+  minitest (~> 5.25)
+  rake (~> 13.2.1)
+  rb-gravatar!
+
+BUNDLED WITH
+   2.5.22
